@@ -1,0 +1,40 @@
+.floating-controls {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
+}
+.floating-controls__top-btn {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  background: var(--color-card);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  transition: transform 0.2s ease;
+}
+.floating-controls__top-btn:hover {
+  transform: translateY(-2px);
+}
+.floating-controls__chat-btn {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 999px;
+  background: linear-gradient(to bottom right, var(--color-primary), var(--color-secondary));
+  color: white;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+.floating-controls__chat-btn:hover {
+  transform: scale(1.05);
+}

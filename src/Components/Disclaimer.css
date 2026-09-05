@@ -1,0 +1,26 @@
+.disclaimer {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  background: rgba(15, 118, 110, 0.06);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  margin-top: 1rem;
+}
+
+.disclaimer__icon {
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+  color: var(--color-primary);
+}
+
+.disclaimer__text {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--color-ink-softer);
+}
+
+.disclaimer--compact .disclaimer__text {
+  font-size: 0.6875rem;
+}
