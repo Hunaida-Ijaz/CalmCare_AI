@@ -117,16 +117,24 @@ function TermsSection() {
 function HelpSection() {
   const faqs = [
     {
-      q: 'How do I create an account?',
-      a: "Click 'Sign Up' on the homepage and follow the on-screen instructions.",
+      q: 'How does the AI Chat work?',
+      a: 'The AI Chat lets you describe your symptoms or health concerns in your own language, and CalmCare responds with guidance and risk insights based on what you share.',
     },
     {
-      q: 'Is my data private?',
-      a: 'Yes, please see the Privacy Policy tab for full details on how your data is handled.',
+      q: 'What are Health Tools?',
+      a: 'Health Tools are a set of features to help you track and understand your health — such as symptom checkers, risk predictors, and other assessment tools available on the platform.',
     },
     {
-      q: 'How do I reset my password?',
-      a: "Go to the login page and click 'Forgot Password' to receive a reset link.",
+      q: 'What can I see on my Dashboard?',
+      a: 'Your Dashboard gives you an overview of your health activity, past AI Chat interactions, and any insights or recommendations generated for you.',
+    },
+    {
+      q: 'Is CalmCare a replacement for a doctor?',
+      a: 'No. CalmCare is designed to support your understanding of your health, not replace professional medical advice, diagnosis, or treatment.',
+    },
+    {
+      q: 'How do I report a problem?',
+      a: "Use the 'Report an Issue' tab above to let us know about any bugs or issues you've encountered.",
     },
   ]
 
