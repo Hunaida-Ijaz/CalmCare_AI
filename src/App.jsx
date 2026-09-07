@@ -14,6 +14,7 @@ import FirstAid from './Pages/FirstAid.jsx'
 import Chatbot from './Pages/Chatbot.jsx'
 import Tools from './Pages/Tools.jsx'
 import Wellness from './Pages/Wellness.jsx'
+import InfoCenter from './Pages/InfoCenter.jsx'
 import Dashboard from './Pages/Dashboard.jsx'
 
 function ScrollToTop() {
@@ -40,6 +41,7 @@ export default function App() {
               <Route path="/tools" element={<Tools />} />
               <Route path="/wellness" element={<Wellness />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/info" element={<InfoCenter />} />
             </Routes>
           </main>
           <Footer />

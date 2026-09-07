@@ -41,17 +41,17 @@ export default function Footer() {
           <ul className="footer__list">
             <li><Link to="/about" className="footer__link">About Us</Link></li>
             <li><Link to="/first-aid" className="footer__link">First Aid</Link></li>
-            <li><a href="#" className="footer__link">Privacy Policy</a></li>
-            <li><a href="#" className="footer__link">Terms of Service</a></li>
+            <li><Link to="/info?section=privacy" className="footer__link">Privacy Policy</Link></li>
+            <li><Link to="/info?section=terms" className="footer__link">Terms of Service</Link></li>
           </ul>
         </div>
 
         <div>
           <h4 className="footer__heading">Support</h4>
           <ul className="footer__list">
-            <li><a href="#" className="footer__link">Help Center</a></li>
-            <li><a href="#" className="footer__link">Emergency Resources</a></li>
-            <li><a href="#" className="footer__link">Report an Issue</a></li>
+             <li><Link to="/info?section=help" className="footer__link">Help Center</Link></li>
+            <li><Link to="/info?section=emergency" className="footer__link">Emergency Resources</Link></li>
+            <li><Link to="/info?section=report" className="footer__link">Report an Issue</Link></li>
           </ul>
         </div>
       </div>
