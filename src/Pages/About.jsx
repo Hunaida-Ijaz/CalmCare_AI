@@ -83,7 +83,7 @@ export default function About() {
               <FaLinkedin size={16} /> linkedin.com/in/hunaida-ijaz
             </a>
             <a href="tel:+923707654321" className="about-contact__link">
-              <Phone size={16} /> +92 370 7654321
+              <Phone size={16} /> +92 3134576638
             </a>
           </div>
         </div>
