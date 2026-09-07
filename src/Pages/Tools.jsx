@@ -295,33 +295,93 @@ function MedicineLookup() {
 function DietRecommendation() {
   const [age, setAge] = useState(25)
   const [weight, setWeight] = useState(65)
+  const [height, setHeight] = useState(165)
   const [disease, setDisease] = useState('none')
   const [goal, setGoal] = useState('maintain')
+  const [preference, setPreference] = useState('balanced')
   const [plan, setPlan] = useState(null)
 
-  function generate(e) {
-    e.preventDefault()
-    const plans = {
-      lose: {
+  const mealPlans = {
+    lose: {
+      vegetarian: {
+        breakfast: 'Vegetable oats with a boiled egg substitute (tofu scramble)',
+        lunch: 'Chickpea salad with olive oil dressing and greens',
+        dinner: 'Lentil soup with steamed vegetables',
+        snacks: 'A handful of almonds or a piece of fruit',
+      },
+      nonVegetarian: {
+        breakfast: 'Oats with berries and a boiled egg',
+        lunch: 'Grilled chicken salad with olive oil dressing',
+        dinner: 'Grilled fish with steamed vegetables',
+        snacks: 'A handful of almonds or a piece of fruit',
+      },
+      balanced: {
         breakfast: 'Oats with berries and a boiled egg',
         lunch: 'Grilled chicken salad with olive oil dressing',
         dinner: 'Lentil soup with steamed vegetables',
         snacks: 'A handful of almonds or a piece of fruit',
       },
-      gain: {
+    },
+    gain: {
+      vegetarian: {
+        breakfast: 'Paratha with paneer bhurji and a glass of milk',
+        lunch: 'Rajma with brown rice and yogurt',
+        dinner: 'Daal makhani with whole wheat roti and ghee',
+        snacks: 'Peanut butter banana smoothie',
+      },
+      nonVegetarian: {
         breakfast: 'Paratha with eggs and a glass of milk',
         lunch: 'Chicken karahi with brown rice',
         dinner: 'Beef stew with whole wheat roti',
         snacks: 'Peanut butter banana smoothie',
       },
-      maintain: {
+      balanced: {
+        breakfast: 'Paratha with eggs and a glass of milk',
+        lunch: 'Chicken karahi with brown rice and yogurt',
+        dinner: 'Daal with roti, ghee, and sautéed spinach',
+        snacks: 'Peanut butter banana smoothie',
+      },
+    },
+    maintain: {
+      vegetarian: {
+        breakfast: 'Vegetable omelet substitute (besan chilla) with toast',
+        lunch: 'Grilled paneer with quinoa and salad',
+        dinner: 'Daal with roti and sautéed spinach',
+        snacks: 'Greek yogurt with honey',
+      },
+      nonVegetarian: {
+        breakfast: 'Vegetable omelet with whole wheat toast',
+        lunch: 'Grilled fish with quinoa and salad',
+        dinner: 'Grilled chicken with roti and sautéed spinach',
+        snacks: 'Greek yogurt with honey',
+      },
+      balanced: {
         breakfast: 'Vegetable omelet with whole wheat toast',
         lunch: 'Grilled fish with quinoa and salad',
         dinner: 'Daal with roti and sautéed spinach',
         snacks: 'Greek yogurt with honey',
       },
-    }
+    },
+  }
+
+  function generate(e) {
+    e.preventDefault()
+
+    // BMI calculation
+    const heightM = height / 100
+    const bmi = (weight / (heightM * heightM)).toFixed(1)
+    const bmiCategory =
+      bmi < 18.5 ? 'Underweight' : bmi < 25 ? 'Normal' : bmi < 30 ? 'Overweight' : 'Obese'
+
+    // Approx daily calorie need (Mifflin-St Jeor, gender-neutral average)
+    let bmr = 10 * weight + 6.25 * height - 5 * age
+    let calories = bmr * 1.4 // light activity multiplier
+    if (goal === 'lose') calories -= 400
+    if (goal === 'gain') calories += 400
+    calories = Math.round(calories)
+
     const water = (weight * 0.033).toFixed(1)
+
     const notes =
       disease === 'diabetes'
         ? 'Favor low-glycemic foods, avoid sugary drinks, and space meals evenly through the day.'
@@ -331,7 +391,9 @@ function DietRecommendation() {
         ? 'Choose lean proteins, healthy fats like olive oil, and limit fried foods.'
         : 'No specific dietary restrictions noted — focus on balance and variety.'
 
-    setPlan({ ...plans[goal], water, notes })
+    const meals = mealPlans[goal][preference]
+
+    setPlan({ ...meals, water, notes, bmi, bmiCategory, calories })
   }
 
   return (
@@ -341,6 +403,9 @@ function DietRecommendation() {
       </Field>
       <Field label="Weight (kg)">
         <input type="number" value={weight} onChange={(e) => setWeight(+e.target.value)} className="tools-input" />
+      </Field>
+      <Field label="Height (cm)">
+        <input type="number" value={height} onChange={(e) => setHeight(+e.target.value)} className="tools-input" />
       </Field>
       <Field label="Condition">
         <select value={disease} onChange={(e) => setDisease(e.target.value)} className="tools-input">
@@ -357,11 +422,28 @@ function DietRecommendation() {
           <option value="gain">Weight Gain</option>
         </select>
       </Field>
+      <Field label="Food Preference">
+        <select value={preference} onChange={(e) => setPreference(e.target.value)} className="tools-input">
+          <option value="balanced">Balanced (Mixed)</option>
+          <option value="vegetarian">Vegetarian</option>
+          <option value="nonVegetarian">Non-Vegetarian</option>
+        </select>
+      </Field>
       <div className="tools-form__full">
         <button type="submit" className="tools-submit">Generate Plan</button>
       </div>
       {plan && (
         <div className="tools-form__full tools-form--2col-nested">
+          <ResultCard>
+            <p className="tools-result__label tools-result__label--primary">BMI</p>
+            <p className="tools-result__note tools-result__note--body">
+              {plan.bmi} ({plan.bmiCategory})
+            </p>
+          </ResultCard>
+          <ResultCard>
+            <p className="tools-result__label tools-result__label--primary">Estimated Daily Calories</p>
+            <p className="tools-result__note tools-result__note--body">{plan.calories} kcal</p>
+          </ResultCard>
           {[
             ['Breakfast', plan.breakfast],
             ['Lunch', plan.lunch],
