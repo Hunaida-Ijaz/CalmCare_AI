@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import {
   MessageSquareText, Stethoscope, GlassWater, Flame,
   BedDouble, Pill, Salad, Brain, LayoutDashboard, HeartPulse,
-  Activity, ShieldCheck, ArrowRight,
+ ShieldCheck, ArrowRight,
 } from 'lucide-react'
 import FeatureCard from '../Components/FeatureCard.jsx'
 import './Home.css'
@@ -59,10 +59,6 @@ const FEATURES = [
   },
 ]
 
-const STATS = [
-  { label: 'Symptom checks / month', value: '18k' },
-  { label: 'User satisfaction', value: '4.8★' },
-]
 
 export default function Home() {
   const navigate = useNavigate()
@@ -81,7 +77,7 @@ export default function Home() {
               Your AI-Powered <span className="hero__title-accent">Personal Healthcare</span> Assistant
             </h1>
             <p className="hero__subtitle">
-              Predict health risks, understand medical reports, receive personalized recommendations, and connect with healthcare professionals — all in one secure platform.
+              Describe your symptoms in English or Roman Urdu, get safe guidance and specialist suggestions, and use health tools like calculators, first aid and wellness check-ins, all in one place.
             </p>
             <div className="hero__buttons">
               <button onClick={() => navigate('/dashboard')} className="home-btn home-btn--primary">
@@ -98,14 +94,7 @@ export default function Home() {
               </button>
             </div>
 
-            <div className="hero__stats">
-              {STATS.map((s) => (
-                <div key={s.label}>
-                  <div className="hero__stat-value">{s.value}</div>
-                  <div className="hero__stat-label">{s.label}</div>
-                </div>
-              ))}
-            </div>
+            
           </div>
 
           {/* Illustration */}
@@ -130,11 +119,6 @@ export default function Home() {
                 </div>
 
                 <div className="hero__mini-cards">
-                  <div className="hero__mini-card animate-float">
-                    <Activity size={16} className="hero__mini-icon hero__mini-icon--secondary" />
-                    <div className="hero__mini-label">Heart Rate</div>
-                    <div className="hero__mini-value">72 bpm</div>
-                  </div>
                   <div className="hero__mini-card animate-float-delay">
                     <Stethoscope size={16} className="hero__mini-icon hero__mini-icon--accent" />
                     <div className="hero__mini-label">Next Step</div>
@@ -153,7 +137,7 @@ export default function Home() {
           <span className="features__eyebrow">Everything in one place</span>
           <h2 className="features__heading">Features built for real healthcare needs</h2>
           <p className="features__desc">
-            From symptom checks to appointment booking, CalmCare AI brings modern healthcare tools together in one calm, trustworthy space.
+            From symptom checks to first aid and wellness tools, CalmCare AI brings modern healthcare guidance together in one calm, trustworthy space.
           </p>
         </div>
 
