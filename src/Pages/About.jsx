@@ -62,7 +62,7 @@ export default function About() {
       <div className="about-banner">
         <h2 className="about-banner__title">AI-Powered Healthcare, Made Simple for Everyone.</h2>
         <p className="about-banner__desc">
-          CalmCare AI combines a Claude-powered assistant with a local fallback engine, so the experience stays reliable even offline or when the API is unreachable.
+          CalmCare AI combines an AI assistant powered by Groq (with Gemini as backup) and a local fallback engine, so the experience stays reliable even offline or when the API is unreachable.
         </p>
       </div>
 

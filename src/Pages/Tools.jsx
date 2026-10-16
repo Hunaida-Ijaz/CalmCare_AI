@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { GlassWater, Flame, BedDouble, Pill, Salad, Search } from 'lucide-react'
 import { medicines } from '../data/medicines.js'
+import { saveEntry } from '../utils/healthStore.js'
 import './Tools.css'
 
 const TABS = [
@@ -87,7 +88,9 @@ function WaterCalculator() {
     if (activity === 'moderate') base *= 1.15
     if (activity === 'active') base *= 1.3
     if (age > 55) base *= 0.95
-    setResult(base.toFixed(2))
+        const liters = base.toFixed(2)
+    setResult(liters)
+    saveEntry('water', { liters: Number(liters) })
   }
 
   return (
@@ -141,6 +144,7 @@ function CalorieCalculator() {
       loss: Math.round(maintenance - 500),
       gain: Math.round(maintenance + 500),
     })
+        saveEntry('calorie', { maintenance: Math.round(maintenance), height, weight })
   }
 
   return (
@@ -219,6 +223,7 @@ function SleepAnalyzer() {
     }
 
     setResult({ hours: hours.toFixed(1), quality, suggestion })
+        saveEntry('sleep', { hours: Number(hours.toFixed(1)), quality })
   }
 
   return (

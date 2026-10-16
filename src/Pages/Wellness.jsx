@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Smile, Frown, Moon, AlertTriangle, Sparkles, Phone } from 'lucide-react'
+import { saveEntry } from '../utils/healthStore.js'
 import './Wellness.css'
 
 const SLIDERS = [
@@ -63,7 +64,7 @@ export default function Wellness() {
           </div>
         ))}
 
-        <button onClick={() => setShowResults(true)} className="wellness-submit">
+        <button onClick={() => { saveEntry('mood', { mood: values.mood }); setShowResults(true) }} className="wellness-submit">
           See My Insights
         </button>
       </div>
